@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#176448" />
+    <title>Venu Health — Tableau de bord</title>
+    <link rel="stylesheet" href="/static/style.css?v=20261011-consensus-popup-v1" />
+    <script defer src="/static/app.js?v=20261011-clear-sms-v1"></script>
+    <script defer src="/static/consensus.js?v=20261011-consensus-popup-v1"></script>
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5" /></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></symbol>
+      <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M9 5H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3" /><rect x="9" y="2" width="6" height="5" rx="1" /><path d="M8 12h8M8 16h5" /></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16" /><circle cx="9" cy="7" r="3" /><circle cx="15" cy="17" r="3" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8.5 12 2.5 2.5 4.5-5" /></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="m10.3 4-8 14a2 2 0 0 0 1.7 3h16a2 2 0 0 0 1.7-3l-8-14a2 2 0 0 0-3.4 0Z" /><path d="M12 9v4M12 17h.01" /></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s7 8 7 12a7 7 0 0 1-14 0c0-4 7-12 7-12Z" /></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="6" width="17" height="12" rx="2" /><path d="M22 10v4M6 10v4M10 10v4M14 10v4" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2c0 9 7 16 16 16a2 2 0 0 0 2-2v-3l-5-2-2 2a14 14 0 0 1-6-6l2-2Z" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a8 8 0 0 1-8 8H8l-5 3V11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z" /><path d="M8 10h8M8 14h5" /></symbol>
+    </svg>
+    <aside class="sidebar" aria-label="Navigation principale">
+      <a class="brand" href="#overview" aria-label="Venu Health, tableau de bord"><span class="brand-mark"><svg class="icon"><use href="#i-pulse" /></svg></span><span>Venu<span class="brand-light"> Health</span><small>GARMIN · HEALTH MONITOR</small></span></a>
+      <p class="nav-label">ESPACE SANTÉ</p>
+      <nav class="nav-links">
+        <a class="nav-link active" href="#overview" aria-current="location"><svg class="icon"><use href="#i-grid" /></svg>Tableau de bord</a>
+        <a class="nav-link" href="#triage"><svg class="icon"><use href="#i-clipboard" /></svg>Pré-triage</a>
+        <a class="nav-link" href="#configuration"><svg class="icon"><use href="#i-settings" /></svg>Configuration</a>
+      </nav>
+      <div class="sidebar-note"><svg class="icon"><use href="#i-shield" /></svg><div><strong>Analyse locale</strong><p>Pré-triage à valider par l’IAO.</p></div></div>
+      <div class="sidebar-footer"><span class="small-dot"></span>Garmin Venu<span class="version">MVP</span></div>
+    </aside>
+    <main class="main-content">
+      <header class="page-header" id="overview"><div><p class="eyebrow">VOTRE ESPACE DE SUIVI</p><h1>Tableau de bord</h1><p class="page-subtitle">Vos indicateurs en direct. Une vue claire pour mieux orienter.</p></div><div class="header-status"><span id="connectionStatus" class="status-pill"><span class="small-dot"></span>Connexion en cours</span><span id="status" class="source-status" role="status">Chargement de la source…</span></div></header>
+      <section class="metrics-grid" aria-label="Indicateurs en temps réel">
+        <article class="metric-card"><div class="metric-top"><h2>Fréquence cardiaque</h2><span class="metric-icon rose"><svg class="icon"><use href="#i-heart" /></svg></span></div><p id="hr" class="metric-value">— <span>bpm</span></p><p class="metric-caption">Mesure actuelle</p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Variabilité · RMSSD</h2><span class="metric-icon"><svg class="icon"><use href="#i-pulse" /></svg></span></div><p id="rmssd" class="metric-value">— <span>ms</span></p><p class="metric-caption">Variabilité cardiaque</p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Stress</h2><span class="metric-icon amber"><svg class="icon"><use href="#i-pulse" /></svg></span></div><p id="stress" class="metric-value">— <span>/100</span></p><p class="metric-caption">Indicateur dérivé</p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Récupération</h2><span class="metric-icon"><svg class="icon"><use href="#i-shield" /></svg></span></div><p id="recovery" class="metric-value">— <span>/100</span></p><p class="metric-caption">Indicateur dérivé</p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Saturation · SpO₂</h2><span class="metric-icon blue"><svg class="icon"><use href="#i-drop" /></svg></span></div><p id="spo2" class="metric-value">— <span>%</span></p><p class="metric-caption">Oxygénation</p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Body Battery</h2><span class="metric-icon"><svg class="icon"><use href="#i-battery" /></svg></span></div><p id="bodyBattery" class="metric-value">— <span>/100</span></p><p class="metric-caption">Réserve d’énergie</p></article>
+      </section>
+      <section class="clinical-metrics" aria-label="Constantes complémentaires du flux">
+        <article class="metric-card"><div class="metric-top"><h2>Température</h2><span class="subtle-tag clinical-source">En attente</span></div><p id="temperature" class="metric-value">— <span>°C</span></p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Fréquence respiratoire</h2><span class="subtle-tag clinical-source">En attente</span></div><p id="respiration" class="metric-value">— <span>/min</span></p></article>
+        <article class="metric-card"><div class="metric-top"><h2>Tension artérielle</h2><span class="subtle-tag clinical-source">En attente</span></div><p id="bloodPressure" class="metric-value">— <span>mmHg</span></p></article>
+      </section>
+      <section class="watch-section" aria-labelledby="watchTitle">
+        <div class="section-heading section-heading-outside"><div><p class="eyebrow">MA MONTRE</p><h2 id="watchTitle">Garmin Venu</h2></div><button id="refreshGarminBtn" class="button-primary" type="button">Actualiser</button></div>
+        <article class="panel watch-card">
+          <div class="watch-header"><div><span class="watch-brand">Garmin Venu</span><p class="watch-subtitle">Données Health Connect · source Garmin Connect</p></div><span id="garminStatus" class="status-pill">Non synchronisée</span></div>
+          <div class="watch-metrics">
+            <div class="watch-metric"><span>Dernière FC</span><strong id="garminHeartRate">— bpm</strong></div>
+            <div class="watch-metric"><span>Repos</span><strong id="garminRestingHr">— bpm</strong></div>
+            <div class="watch-metric"><span>Dernier sommeil</span><strong id="garminSleep">—</strong></div>
+            <div class="watch-metric"><span>Pas</span><strong id="garminSteps">—</strong></div>
+          </div>
+          <div class="watch-meta">
+            <p id="garminSource">Source : Garmin Connect / Health Connect · inactive</p>
+            <p id="garminLastSync">Dernière synchronisation : —</p>
+          </div>
+        </article>
+      </section>
+      <div class="overview-grid">
+        <section class="panel chart-panel" aria-labelledby="chartTitle">
+          <div class="section-heading"><div><p class="eyebrow">ACTIVITÉ CARDIAQUE</p><h2 id="chartTitle">Fréquence en temps réel</h2></div><span class="subtle-tag">120 derniers points</span></div>
+          <div class="chart-container"><canvas id="hrChart" role="img" aria-label="Évolution de la fréquence cardiaque en battements par minute"></canvas><p id="chartEmpty" class="chart-empty">En attente des premières mesures…</p></div>
+          <dl class="window-stats" aria-label="Moyennes glissantes de fréquence cardiaque"><div><dt>Moyenne 1 min</dt><dd id="window1m">—</dd></div><div><dt>Moyenne 5 min</dt><dd id="window5m">—</dd></div><div><dt>Moyenne 1 h</dt><dd id="window1h">—</dd></div><div><dt>Référence au repos</dt><dd id="windowBaseline">—</dd></div></dl>
+        </section>
+        <section class="panel insights-panel" aria-labelledby="insightsTitle"><div class="section-heading"><div><p class="eyebrow">À RETENIR</p><h2 id="insightsTitle">Synthèse du suivi</h2></div><svg class="icon section-icon"><use href="#i-pulse" /></svg></div><p id="summary" class="summary-text">Votre synthèse apparaîtra dès la réception des premières données.</p><div class="alerts-heading"><h3>Alertes du suivi</h3><span id="alertCount" class="count-badge">0</span></div><ul id="alerts" class="alert-list"><li class="no-alert">En attente de données.</li></ul><p class="disclaimer" id="disclaimer">Outil de bien-être, pas un dispositif médical.</p></section>
+      </div>
+      <section class="triage-section" id="triage" aria-labelledby="triageTitle">
+        <div class="section-heading section-heading-outside"><div><p class="eyebrow">AIDE À L’ORIENTATION</p><h2 id="triageTitle">Pré-triage assisté</h2><p class="section-description">Renseignez les symptômes pour obtenir une fiche à valider par l’IAO.</p></div><span id="ollamaStatus" class="status-pill">Vérification du moteur…</span></div>
+        <div class="triage-workspace">
+          <form id="triageForm" class="panel triage-form">
+            <div class="form-heading"><span class="step-number">01</span><div><h3>Informations du patient</h3><p>Contexte et signes à signaler</p></div></div>
+            <div class="live-context"><div class="live-context-heading"><strong>Constantes utilisées automatiquement</strong><span id="triageLiveSource" class="subtle-tag">En attente</span></div><p id="triageLiveValues">Connexion aux dernières mesures…</p><small id="triageLiveMeta">La fiche conserve les valeurs capturées au lancement de l’analyse.</small></div>
+            <div class="triage-grid">
+              <label class="field-full">Motif principal<input id="triageMotif" placeholder="Ex. : douleur abdominale" /></label>
+              <label class="field-full">Symptômes et durée<textarea id="triageSymptoms" rows="3" placeholder="Décrivez les symptômes et depuis quand ils sont présents."></textarea></label>
+              <label>Température<input id="triageTemp" placeholder="Ex. : 38.5°C" /><span class="field-hint">Vide : température du flux utilisée automatiquement.</span></label>
+              <label>Douleur · échelle EVA<input id="triagePain" value="0/10" placeholder="Ex. : 7/10" /><span class="field-hint">De 0 à 10.</span></label>
+              <label class="field-full">Langue de l’analyse<select id="triageLanguage"><option value="fr">Français</option><option value="ar">Arabe tunisien (Derja)</option></select></label>
+            </div>
+            <fieldset class="red-flags"><legend><svg class="icon"><use href="#i-alert" /></svg>Signes d’alerte immédiate</legend><p class="field-hint">Cochez les signes présents chez le patient.</p><label><input type="checkbox" data-red-flag="chest" /><span>Douleur violente à la poitrine / au bras gauche</span></label><label><input type="checkbox" data-red-flag="breath" /><span>Difficulté brutale à respirer ou à parler</span></label><label><input type="checkbox" data-red-flag="weakness" /><span>Faiblesse d’un côté ou perte de connaissance</span></label><label><input type="checkbox" data-red-flag="bleeding" /><span>Saignement abondant impossible à stopper</span></label></fieldset>
+            <button id="triageBtn" class="button-primary" type="submit"><svg class="icon"><use href="#i-clipboard" /></svg><span>Analyser le pré-triage</span><svg class="icon button-arrow"><use href="#i-arrow" /></svg></button>
+            <p class="form-footnote">Le résultat prépare l’évaluation par l’infirmier d’accueil et d’orientation (IAO).</p>
+          </form>
+          <section id="triageResult" class="panel triage-dashboard" aria-labelledby="resultTitle" aria-busy="false">
+            <div class="result-heading"><div class="form-heading"><span class="step-number">02</span><div><h3 id="resultTitle">Fiche de pré-triage</h3><p id="resultTimestamp">En attente d’une analyse</p></div></div><span class="subtle-tag">À valider par l’IAO</span></div>
+            <p id="triageFeedback" class="sr-only" role="status" aria-live="polite"></p>
+            <div id="triageEmpty" class="result-empty"><span class="empty-icon"><svg class="icon"><use href="#i-clipboard" /></svg></span><h4 id="emptyTitle">Une synthèse claire, en un regard</h4><p id="emptyDescription">Lancez une analyse pour afficher la priorité, les constantes et l’action recommandée.</p><div class="empty-tags" aria-hidden="true"><span>Priorité</span><span>Constantes</span><span>Orientation</span></div></div>
+            <div id="triageContent" class="result-content" hidden>
+              <div id="priorityBanner" class="priority-banner" data-priority="unknown"><span id="priorityCode" class="priority-code">—</span><div><p class="priority-label">PRIORITÉ DE TRIAGE</p><h4 id="priorityTitle">À vérifier</h4></div><svg class="icon priority-icon"><use href="#i-clipboard" /></svg></div>
+              <button id="reopenEmergencyBtn" class="emergency-reopen" type="button" hidden><svg class="icon"><use href="#i-alert" /></svg>Ouvrir les actions d’urgence</button>
+              <div class="patient-context"><p class="eyebrow">MOTIF PRINCIPAL</p><h4 id="resultMotif" dir="auto">—</h4><p class="context-label">Symptômes et durée</p><p id="resultSymptoms" dir="auto">—</p></div>
+              <div class="triage-indicators"><article class="indicator"><p class="indicator-label">Douleur · EVA</p><strong id="resultPain" dir="auto">—</strong><div id="painMeter" class="pain-meter" role="meter" aria-label="Douleur sur 10" aria-valuemin="0" aria-valuemax="10" hidden><span id="painFill"></span></div></article><article id="redFlagIndicator" class="indicator" data-state="unknown"><p class="indicator-label">Signes d’alerte</p><strong id="resultRedFlags">—</strong><p id="redFlagDetail" class="indicator-detail">Selon l’analyse</p></article></div>
+              <div class="vitals-section"><h4>Constantes du pré-triage</h4><p id="resultMeasurementsNote" class="measurement-note"></p><dl class="vitals-grid"><div><dt>Tension artérielle</dt><dd id="resultTension" dir="auto">Non renseignée</dd></div><div><dt>Fréquence cardiaque</dt><dd id="resultHr" dir="auto">Non renseignée</dd></div><div><dt>SpO₂</dt><dd id="resultSpo2" dir="auto">Non renseignée</dd></div><div><dt>Température</dt><dd id="resultTemperature" dir="auto">Non renseignée</dd></div><div><dt>Fréquence respiratoire</dt><dd id="resultRespiration" dir="auto">Non renseignée</dd></div></dl></div>
+              <div id="recommendationBox" class="recommendation-box"><span class="recommendation-icon"><svg class="icon"><use href="#i-arrow" /></svg></span><div><h4>Action recommandée</h4><p id="resultRecommendation" dir="auto">—</p></div></div>
+              <div class="reasoning-section"><h4>Critères vérifiés</h4><ul id="resultReasons"></ul><p id="resultEngine" class="measurement-note"></p></div>
+              <details id="modelExplanation" class="model-explanation" hidden><summary>Explication du modèle · à vérifier par l’IAO</summary><ul id="modelReasons"></ul><p id="modelOrientation" dir="auto"></p></details>
+              <details class="technical-details"><summary>Voir les données de l’analyse <span>JSON</span></summary><pre id="triageJson" dir="ltr"></pre></details>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section class="configuration-section" id="configuration" aria-labelledby="configTitle">
+        <div class="section-heading section-heading-outside"><div><p class="eyebrow">VOTRE SOURCE DE DONNÉES</p><h2 id="configTitle">Connexion & simulation</h2></div><span class="subtle-tag">Garmin Venu</span></div>
+        <div class="configuration-grid">
+          <section class="panel"><h3>Connexion à la montre</h3><p class="section-description">Utilisez votre montre Garmin ou le simulateur de démonstration.</p><div class="controls"><label>Source<select id="sourceMode"><option value="sim">Simulateur</option><option value="ble">BLE Garmin HR</option></select></label><label>Adresse BLE <span class="label-optional">(optionnel)</span><input id="deviceAddress" placeholder="AA:BB:CC:DD:EE:FF" /></label><div class="button-row"><button id="startBtn" class="button-primary" type="button">Démarrer</button><button id="scanBtn" type="button">Scanner Garmin</button></div></div><details class="scan-details"><summary>Résultats du scan BLE</summary><ul id="scanResults"><li>Aucun scan effectué.</li></ul></details></section>
+          <section class="panel"><h3>Options du simulateur</h3><p class="section-description">Choisissez un profil pour explorer les indicateurs du suivi.</p><div class="controls sim-controls"><label>Profil<select id="simProfile"><option value="mixed">Mixte</option><option value="calm">Calme</option><option value="activity">Activité</option><option value="stress">Stress</option><option value="recovery">Récupération</option><option value="sleep">Sommeil</option><option value="fever">Fièvre (démo)</option><option value="respiratory">Désaturation (démo)</option><option value="hypotension">Hypotension (démo)</option></select></label><label>Vitesse<input id="simSpeed" type="number" min="0.25" max="8" step="0.25" value="1" /></label><button id="applySimBtn" type="button">Appliquer la simulation</button></div></section>
+          <section class="panel emergency-settings"><h3>Contact d’urgence</h3><p class="section-description">Le pop-up P1 propose un appel au numéro configuré.</p><label>Numéro à appeler<input id="emergencyPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" value="51288215" aria-describedby="emergencyPhoneHint" /></label><p id="emergencyPhoneHint" class="measurement-note">L’appel s’ouvre uniquement lorsque vous appuyez sur le bouton d’appel.</p></section>
+          <section class="panel notification-panel" aria-labelledby="notificationTitle"><div class="section-heading"><h3 id="notificationTitle">Journal des alertes P1</h3><span id="notificationCount" class="subtle-tag">0 notification</span></div><p class="section-description">Notifications dans cette application. Aucun SMS ou email n’est envoyé.</p><p id="notificationHistoryStatus" class="measurement-note" role="status">Chargement du journal…</p><ul id="notificationHistory" class="notification-history" aria-label="Dernières notifications P1"></ul></section>
+        </div>
+      </section>
+      <footer class="page-footer"><span>Venu Health · Garmin Venu</span><span>Suivi en temps réel & aide au pré-triage</span></footer>
+    </main>
+    <button id="consensusLauncher" class="consensus-launcher" type="button" aria-label="Ouvrir l’assistant Consensus" aria-haspopup="dialog" aria-controls="consensusPopup" aria-expanded="false" title="Assistant Consensus"><svg class="icon" aria-hidden="true"><use href="#i-chat" /></svg></button>
+    <dialog id="consensusPopup" class="consensus-popover" aria-labelledby="researchTitle" aria-describedby="consensusPopupDescription">
+      <header class="consensus-popup-header"><span class="research-avatar" aria-hidden="true"><svg class="icon"><use href="#i-book" /></svg></span><div><h2 id="researchTitle">Assistant Consensus</h2><p id="consensusPopupDescription">Vos questions, des réponses sourcées.</p></div><button id="consensusCloseBtn" type="button" aria-label="Fermer l’assistant Consensus"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button></header>
+      <div class="consensus-popup-status"><span id="consensusStatus" class="status-pill">Vérification de Consensus…</span><span class="subtle-tag">Recherche scientifique</span></div>
+      <div id="consensusMessages" class="research-messages" role="log" aria-label="Conversation avec l’assistant de recherche" aria-live="polite" aria-relevant="additions text">
+        <article class="research-message research-assistant"><p class="research-speaker">CONSENSUS</p><p>Bonjour ! Posez une question scientifique : je rechercherai les publications pertinentes et leurs points clés.</p></article>
+      </div>
+      <div class="research-examples"><button id="consensusCreatineExample" type="button">Créatine & cognition</button><button id="consensusSleepExample" type="button">Sommeil & récupération</button></div>
+      <form id="consensusForm" class="research-composer"><label for="consensusQuestion">Votre question scientifique</label><div class="research-input-row"><textarea id="consensusQuestion" rows="2" minlength="3" maxlength="1000" required placeholder="Posez votre question…" aria-describedby="consensusPrivacy"></textarea><button id="consensusSendBtn" class="button-primary" type="submit"><svg class="icon"><use href="#i-arrow" /></svg><span id="consensusSendLabel">Rechercher</span></button></div><p id="consensusFeedback" class="measurement-note" role="status" aria-live="polite"></p><p id="consensusPrivacy" class="research-privacy">Questions envoyées à Consensus. Les données du triage et de la montre restent séparées. Les publications ne remplacent pas une évaluation médicale.</p></form>
+    </dialog>
+    <dialog id="emergencyDialog" class="emergency-dialog" role="alertdialog" aria-labelledby="emergencyTitle" aria-describedby="emergencyDescription">
+      <div class="emergency-header"><span class="emergency-mark"><svg class="icon"><use href="#i-alert" /></svg></span><span class="emergency-priority">PRIORITÉ P1</span><button id="closeEmergencyBtn" class="icon-button" type="button" aria-label="Fermer l’alerte"><svg class="icon"><use href="#i-close" /></svg></button></div>
+      <div class="emergency-body"><span id="emergencyDemo" class="demo-badge" hidden>DÉMONSTRATION · DONNÉES SIMULÉES</span><h2 id="emergencyTitle">Alerte · prise en charge immédiate</h2><p id="emergencyDescription" class="emergency-description">Un résultat P1 a été détecté. Prévenir un soignant et faire évaluer la situation sans délai.</p><div class="emergency-context"><p class="eyebrow">MOTIF PRINCIPAL</p><h3 id="emergencyMotif" dir="auto">—</h3><p id="emergencyTimestamp" class="measurement-note"></p><ul id="emergencyReasons" class="emergency-reasons"></ul></div><dl class="emergency-vitals"><div><dt>Fréquence cardiaque</dt><dd id="emergencyHr">—</dd></div><div><dt>Saturation · SpO₂</dt><dd id="emergencySpo2">—</dd></div><div><dt>Tension artérielle</dt><dd id="emergencyPressure">—</dd></div></dl><p id="emergencyAction" class="emergency-orientation" dir="auto"></p><div class="emergency-actions"><a id="emergencyCallBtn" class="button-call" href="tel:51288215"><svg class="icon"><use href="#i-phone" /></svg><span id="emergencyCallLabel">Appeler le 51288215</span></a><a id="emergencySmsBtn" class="button-sms" aria-disabled="true"><svg class="icon"><use href="#i-bell" /></svg>Préparer un SMS au contact d’urgence</a><button id="notifyEmergencyBtn" type="button"><svg class="icon"><use href="#i-bell" /></svg><span id="notifyEmergencyLabel">Notifier dans l’application</span></button></div><p id="emergencyCallHint" class="measurement-note">Ouvre l’application téléphone de cet appareil.</p><p class="measurement-note">Le SMS contient le résumé de l’alerte. Vérifiez-le et envoyez-le dans l’application Messages de votre appareil.</p><p id="emergencyNotificationStatus" class="emergency-notification-status" role="status" aria-live="polite">La notification sera publiée dans le journal des alertes P1.</p></div>
+      <div class="emergency-footer"><span>Orientation à valider par l’IAO</span><button id="dismissEmergencyBtn" type="button">Revenir à la fiche</button></div>
+    </dialog>
+    <div id="toastContainer" class="toast-container" role="status" aria-live="polite"></div>
+  </body>
+</html>
